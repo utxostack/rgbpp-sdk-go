@@ -1,5 +1,8 @@
 package types
 
+// PackRgbppUnlock returns serialized hexadecimal string for the RGB++ unlock witness
+//
+// The inputsLen and outputsLen are the length of the CKB virtual TX inputs and outputs
 func PackRgbppUnlock(btcTxWithoutWitness string, btcTxProof string, inputsLen, outputsLen uint8) string {
 	btxTxBytes := *PackBytes(HexToBytes(btcTxWithoutWitness))
 	btcTxProofBytes := *PackBytes((HexToBytes(btcTxProof)))
