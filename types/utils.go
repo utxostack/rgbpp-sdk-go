@@ -1,6 +1,7 @@
 package types
 
 import (
+	"encoding/binary"
 	"encoding/hex"
 	"fmt"
 	"strings"
@@ -41,4 +42,10 @@ func PackBytes(v []byte) *Bytes {
 	}
 	b := builder.Build()
 	return &b
+}
+
+func PackUint16(v uint16) *Uint16 {
+	b := make([]byte, 2)
+	binary.LittleEndian.PutUint16(b, v)
+	return Uint16FromSliceUnchecked(b)
 }
