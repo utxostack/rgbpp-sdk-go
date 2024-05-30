@@ -9,16 +9,13 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
 
-// HexToBytes decodes a hex string with 0x prefix to byte array.
+// HexToBytes decodes a hexadecimal string to byte array.
 func HexToBytes(h string) []byte {
-	if strings.Contains(h, "0x") {
-		data, err := hexutil.Decode(h)
-		if err != nil {
-			panic(err)
-		}
-		return data
+	var str = h
+	if !strings.Contains(h, "0x") {
+		str = fmt.Sprintf("0x%s", h)
 	}
-	data, err := hexutil.Decode(fmt.Sprintf("0x%s", h))
+	data, err := hexutil.Decode(str)
 	if err != nil {
 		panic(err)
 	}
